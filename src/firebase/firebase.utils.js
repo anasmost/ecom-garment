@@ -12,14 +12,39 @@ const config = {
   measurementId: "G-F4KPEYWSC9"
 };
 
-firebase.initializeApp(config);
+export const storeUserInFirestore = async (userAuthObj, additionalData) => {
+  if (!userAuthObj) return;
 
+  const userRef = firestore.doc(`users/${userAuthObj.uid}`);
+
+  const user = await userRef.get();
+
+  if (!user.exists) {
+    const { displayName, email } = userAuthObj;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData
+      });
+    } catch (e) {
+      console.error(e.message);
+    }
+  }
+
+  return userRef;
+};
+
+firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
+const authProvider = new firebase.auth.GoogleAuthProvider();
+authProvider.setCustomParameters({ prompt: 'select_account' });
 
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = () => auth.signInWithPopup(authProvider);
 
 export default firebase;
