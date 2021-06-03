@@ -8,7 +8,7 @@ import ShopPage from './pages/shoppage/shoppage.component';
 import SignInUp from './pages/sign-in-out/sign-in-up.component';
 import { auth, storeUserInFirestore } from "./firebase/firebase.utils";
 import { connect } from 'react-redux';
-import { setCurrentUser } from './assets/redux/user/user.actions';
+import { setCurrentUser } from './redux/user/user.actions';
 
 
 class App extends Component {
