@@ -19,5 +19,5 @@ export const selectItemCount = pipe(
 
 export const selectTotalPrice = pipe(
   selectCartItems,
-  memoize(cartItems => cartItems.reduce((acc, { price }) => acc + price, 0))
+  memoize(cartItems => cartItems.reduce((acc, { price, quantity }) => acc + price * quantity, 0))
 );

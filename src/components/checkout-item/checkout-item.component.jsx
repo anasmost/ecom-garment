@@ -1,9 +1,9 @@
 import "./checkout-item.styles.scss";
 import React from "react";
 import { connect } from "react-redux";
-import { clearItem } from "../../redux/cart/cart.actions";
+import { addItem, clearItem, decreaseQuantity } from "../../redux/cart/cart.actions";
 
-const CheckoutItem = ({ clearItem, cartItem }) => {
+const CheckoutItem = ({ addItem, clearItem, decreaseQuantity, cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
 
   return (
@@ -12,10 +12,14 @@ const CheckoutItem = ({ clearItem, cartItem }) => {
         <img src={imageUrl} alt="item" />
       </td>
       <td>{name}</td>
-      <td>
-        <span className="arrow">&#10094;</span>
+      <td className="quantity">
+        <span className="arrow" onClick={() => decreaseQuantity(cartItem)}>
+          &#10094;
+        </span>
         <span className="value">{quantity}</span>
-        <span className="arrow">&#10095;</span>
+        <span className="arrow" onClick={() => addItem(cartItem)}>
+          &#10095;
+        </span>
       </td>
       <td>$ {price}</td>
       <td className="remove-button" onClick={() => clearItem(cartItem)}>
@@ -27,6 +31,8 @@ const CheckoutItem = ({ clearItem, cartItem }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   clearItem: (cartItem) => dispatch(clearItem(cartItem)),
+  addItem: (cartItem) => dispatch(addItem(cartItem)),
+  decreaseQuantity: (cartItem) => dispatch(decreaseQuantity(cartItem)),
 });
 
 export default connect(null, mapDispatchToProps)(CheckoutItem);

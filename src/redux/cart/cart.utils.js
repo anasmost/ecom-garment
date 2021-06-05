@@ -19,4 +19,19 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
       cartItemIndex, cartItemIndex + 1
     );
   }
-}
+};
+
+export const decreaseQuantity = (cartItems, targetItem) => {
+
+  if (targetItem.quantity === 1) return cartItems;
+
+  return cartItems.map(item => (
+    item.id === targetItem.id ?
+      {
+        ...item,
+        quantity: item.quantity - 1
+      } :
+      item
+  ));
+
+};

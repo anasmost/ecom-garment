@@ -11,11 +11,27 @@
   .remove-button {
     padding-left: 12px;
     cursor: pointer;
+
+    &:hover {
+      color: salmon;
+    }
+  }
+
+  .quantity {
+    user-select: none;
   }
 
   .arrow {
     cursor: pointer;
     padding: 4px 6px;
+
+    &:hover {
+      color: salmon;
+    }
+
+    &:active {
+      color: rosybrown;
+    }
   }
 
   .value {
