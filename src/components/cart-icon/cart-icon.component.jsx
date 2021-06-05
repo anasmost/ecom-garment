@@ -7,13 +7,10 @@ import { toggleCart } from "../../redux/cart/cart.actions";
 import "./cart-icon.styles.scss";
 
 const CartIcon = ({ toggleCart, itemsCount }) => (
-  console.log("cart-icon rendered !!!!!!!!!!!!!!!!"),
-  (
-    <div className="cart-icon" onClick={toggleCart}>
-      <ShoppingIcon />
-      <span className="item-count">{itemsCount}</span>
-    </div>
-  )
+  <div className="cart-icon" onClick={toggleCart}>
+    <ShoppingIcon />
+    <span className="item-count">{itemsCount}</span>
+  </div>
 );
 
 const mapDispatchToProps = (dispatch) => ({

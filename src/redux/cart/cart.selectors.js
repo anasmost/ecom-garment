@@ -7,6 +7,11 @@ export const selectCartItems = pipe(
   memoize(cart => cart.cartItems)
 );
 
+export const selectCartHidden = pipe(
+  selectCart,
+  cart => cart.hidden//primitive
+);
+
 export const selectItemCount = pipe(
   selectCartItems,
   memoize(cartItems => cartItems.reduce((accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity, 0)

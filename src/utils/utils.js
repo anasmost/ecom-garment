@@ -13,9 +13,8 @@ export const memoize = (fn) => {
   };
 };
 
-export const pipe = (...functions) => (
+export const pipe = (...functions) =>
   functions.reduceRight((pipedFns, fn) =>
     (...args) => pipedFns(fn(...args)),
     x => x
-  )
-);
+  );
