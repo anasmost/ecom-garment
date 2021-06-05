@@ -5,7 +5,7 @@ import CustomButton from "../custom-button/custom-button.component";
 import { connect } from "react-redux";
 import CartItem from "../cart-item/cart-item.component";
 import { selectCartItems } from "../../redux/cart/cart.selectors";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { toggleCart } from "../../redux/cart/cart.actions";
 
 const CartDropdown = ({ cartItems, history, dispatch }) => (
