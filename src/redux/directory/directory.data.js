@@ -1,6 +1,4 @@
-/* Used as starting data for Directory */
-
-const SECTIONS_DATA = [
+const DIRECTORY_DATA = [
     {
         title: 'hats',
         imageUrl: '/images/hats.png',
@@ -36,4 +34,4 @@ const SECTIONS_DATA = [
     }
 ];
 
-export default SECTIONS_DATA;
+export default DIRECTORY_DATA;

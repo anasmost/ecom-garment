@@ -1,15 +1,3 @@
-Object.prototype.entries = function () {
-  const entries = [];
-
-  for (const key in this) {
-    if (this.hasOwnProperty(key)) {
-      entries.push([key, this[key]]);
-    }
-  }
-
-  return entries;
-};
-
 Object.areEqual = (obj1, obj2) => {
   // Check perfect Equality
   if (obj1 === obj2) return true;
@@ -21,8 +9,8 @@ Object.areEqual = (obj1, obj2) => {
   if (Array.isArray(obj1) ^ Array.isArray(obj2)) return false;
 
 
-  const obj1Entries = Object.prototype.entries(obj1);
-  const obj2Entries = Object.prototype.entries(obj2);
+  const obj1Entries = Object.entries(obj1);
+  const obj2Entries = Object.entries(obj2);
   // Equality of Objects length
   if (obj1Entries.length !== obj2Entries.length) return false;
   // Compare inner values
