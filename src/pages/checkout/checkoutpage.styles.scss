@@ -13,7 +13,10 @@
 
   .row {
     display: grid;
-    grid-template-columns: repeat(2, 2fr) repeat(2, 1fr) minmax(60px, max-content);
+    grid-template-columns: repeat(2, 2fr) repeat(2, 1fr) minmax(
+        60px,
+        max-content
+      );
     justify-content: stretch;
     align-items: center;
     justify-items: center;
@@ -25,5 +28,12 @@
     margin-top: 30px;
     text-align: right;
     font-size: 36px;
+  }
+  .test-warning {
+    text-align: center;
+    font-weight: 300;
+    color: #b30000;
+    margin-top: 40px;
+    font-size: 24px;
   }
 }
