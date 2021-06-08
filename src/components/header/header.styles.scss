@@ -21,6 +21,10 @@
 
     .option {
       padding: 10px 15px;
+
+      &:last-child {
+        padding-left: 20px;
+      }
     }
   }
 }

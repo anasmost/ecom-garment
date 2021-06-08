@@ -2,10 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
-import {
-  selectCartItems,
-  selectTotalPrice,
-} from "../../redux/cart/cart.selectors";
+import { selectCartItems, selectTotalPrice } from "../../redux/cart/cart.selectors";
 import "./checkoutpage.styles.scss";
 
 const CheckoutPage = ({ cartItems, totalPrice }) => {
@@ -33,7 +30,9 @@ const CheckoutPage = ({ cartItems, totalPrice }) => {
         <br />
         4242 4242 4242 4242 - Exp:01/22 - CVV: 123
       </div>
-      <StripeCheckoutButton price={totalPrice} />
+      <div className="center">
+        <StripeCheckoutButton price={totalPrice} />
+      </div>
     </div>
   );
 };
