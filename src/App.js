@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
-import './App.css';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import React, { Component } from "react";
+import "./App.css";
+import { Redirect, Route, Switch } from "react-router-dom";
 
-import Header from './components/header/header.component';
-import Homepage from './pages/homepage/homepage.component';
-import ShopPage from './pages/shop/shoppage.component';
-import SignInUp from './pages/sign-in-out/sign-in-up.component';
+import Header from "./components/header/header.component";
+import Homepage from "./pages/homepage/homepage.component";
+import ShopPage from "./pages/shop/shoppage.component";
+import SignInUp from "./pages/sign-in-out/sign-in-up.component";
 import { auth, storeUserInFirestore } from "./firebase/firebase.utils";
-import { connect } from 'react-redux';
-import { setCurrentUser } from './redux/user/user.actions';
-import { selectCurrentUser } from './redux/user/user.selectors';
-import CheckoutPage from './pages/checkout/checkoutpage.component';
-
+import { connect } from "react-redux";
+import { setCurrentUser } from "./redux/user/user.actions";
+import { selectCurrentUser } from "./redux/user/user.selectors";
+import CheckoutPage from "./pages/checkout/checkoutpage.component";
 
 class App extends Component {
   unsubscribeFromAuth = null;
@@ -27,10 +26,10 @@ class App extends Component {
       // Ensure the user data is stored in Firestore DB
       const userRef = await storeUserInFirestore(userAuthObj);
       // Update the App state accordingly
-      userRef.onSnapshot(user => {
+      userRef.onSnapshot((user) => {
         setCurrentUser({
           id: user.id,
-          ...user.data()
+          ...user.data(),
         });
       });
     });
@@ -50,24 +49,23 @@ class App extends Component {
           <Route exact path="/" component={Homepage} />
           <Route path="/shop" component={ShopPage} />
           <Route exact path="/checkout" component={CheckoutPage} />
-          <Route exact path="/sign-in" render={
-            () => currentUser ?
-              <Redirect to="/" />
-              : <SignInUp />
-          }
+          <Route
+            exact
+            path="/sign-in"
+            render={() => (currentUser ? <Redirect to="/" /> : <SignInUp />)}
           />
         </Switch>
-      </div >
+      </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: selectCurrentUser(state)
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

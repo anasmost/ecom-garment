@@ -6,14 +6,14 @@ import CollectionItem from "../../components/collection-item/collection-item.com
 import { selectSingleCollection } from "../../redux/shop/shop.selectors";
 
 const CollectionPage = ({ collection: { title, items } }) => (
-    <div className="collection">
-      <h2 className='title'>{title}</h2>
-      <div className="collection-items">
-        {items.map((item) => (
-          <CollectionItem item={item} />
-        ))}
-      </div>
+  <div className="collection">
+    <h2 className="title">{title}</h2>
+    <div className="collection-items">
+      {items.map((item) => (
+        <CollectionItem item={item} />
+      ))}
     </div>
+  </div>
 );
 
 const mapStateToProps = (state, { match }) => ({

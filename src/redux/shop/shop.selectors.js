@@ -1,13 +1,21 @@
-import { pipe, memoize } from '../../utils/utils';
+import { pipe, memoize } from "../../utils/utils";
 
-const selectShop = state => state.shop;
+const selectShop = (state) => state.shop;
 
 export const selectCollections = pipe(
   selectShop,
-  memoize(shop => shop.collections)
+  memoize((shop) => shop.collections)
 );
 
-export const selectSingleCollection = urlParam => pipe(
+export const selectCollectionsForPreview = pipe(
   selectCollections,
-  memoize(collections => collections.find(collection => collection.routeName === urlParam))
+  memoize((collections) =>
+    Object.keys(collections).map((key) => collections[key])
+  )
 );
+
+export const selectSingleCollection = (urlParam) =>
+  pipe(
+    selectCollections,
+    memoize((collections) => collections[urlParam])
+  );
